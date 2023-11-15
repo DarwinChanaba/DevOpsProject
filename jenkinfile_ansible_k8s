@@ -1,0 +1,14 @@
+pipeline {
+    agent {label '1'}
+    stages {
+        stage('ansible-apply-deployment') {
+            steps {
+                script {
+                   sh 'pwd'
+                   sh 'ls -lah'
+                   sh 'ansible-playbook ansible_deployment.yml'
+     }
+    }
+   }
+  }
+ }

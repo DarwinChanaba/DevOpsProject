@@ -1,0 +1,11 @@
+---
+- name: Deploy Kubernetes YAML
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Apply Kubernetes deploy YAML
+      command: kubectl apply -f /var/lib/jenkins/workspace/ansible_k8s_deployment/deploy.yml
+    - name: Apply Kubernetes service YAML
+      command: kubectl apply -f /var/lib/jenkins/workspace/ansible_k8s_deployment/svc.yml
+    - name: Apply Kubernetes service YAML
+      command: kubectl apply -f /var/lib/jenkins/workspace/ansible_k8s_deployment/ingress.yml

@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+
+  tasks:
+  - name: create docker image
+    command: docker build -t romarushanov/abcd-tech:release .
+    args:
+      chdir: "/var/lib/jenkins/workspace/ansible_deploy"
+  - name: Push Docker Image to Docker Hub
+    command: docker push romarushanov/abcd-tech:release
+    become: yes

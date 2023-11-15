@@ -1,0 +1,29 @@
+---
+- name: Maven Project Pipeline
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Install Maven
+      package:
+        name: maven
+        state: present
+    - name: Compile
+      shell: mvn compile
+      args:
+        chdir: "/var/lib/jenkins/workspace/ansible_deploy"
+
+    - name: Test
+      shell: mvn test
+      args:
+        chdir: "/var/lib/jenkins/workspace/ansible_deploy"
+
+    - name: Package
+      shell: mvn package
+      args:
+        chdir: "/var/lib/jenkins/workspace/ansible_deploy"
+
+    - name: Clean Install
+      shell: mvn clean install
+      args:
+        chdir: "/var/lib/jenkins/workspace/ansible_deploy"

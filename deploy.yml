@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: abctechnologies-dep
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: abc-tech-app
+  template:
+    metadata:
+      labels:
+        app: abc-tech-app
+    spec:
+      containers:
+      - name: myapp
+        image: romarushanov/maveeen:mavenapp-release
+        ports:
+        - containerPort: 8080  # Adjust the port if needed

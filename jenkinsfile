@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Compile') {
+            steps {
+                script {
+                    // Download and install Maven
+                    def mavenHome = tool name: 'Maven', type: 'maven'
+                    env.PATH = "${mavenHome}/bin:${env.PATH}"
+
+                    // Your compile commands go here
+                    sh 'mvn compile'
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                // Your test commands go here
+                sh 'mvn test'
+            }
+        }
+
+        stage('Package') {
+            steps {
+                // Your packaging commands go here
+                sh 'mvn package'
+            }
+        }
+
+        stage('Clean Install') {
+            steps {
+                // Your clean install commands go here
+                sh 'mvn clean install'
+                archiveArtifacts artifacts: 'target/ABCtechnologies-1.0.war'
+            }
+        }
+    }
+}

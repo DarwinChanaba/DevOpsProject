@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+    name: abc-tech-service
+spec:
+    type: ClusterIP
+    selector:
+        app: abc-tech-app
+    ports:
+        - port: 80 #cluster port
+          targetPort: 8080 #container image port
