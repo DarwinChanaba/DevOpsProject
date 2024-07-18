@@ -4,7 +4,7 @@ pipeline {
         AWS_DEFAULT_REGION = 'us-east-1'
         AWS_ACCOUNT_ID = '031995739067'
         ECR_REPO_NAME = 'registry' 
-        IMAGE_TAG = 'latest' 
+        IMAGE_TAG = "${env.COMMIT_HASH}" 
         REPO_URL = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}"
         DOCKER_IMAGE_NAME = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
     }
