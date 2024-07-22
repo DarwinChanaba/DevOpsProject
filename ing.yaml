@@ -12,10 +12,10 @@ spec:
   - host: "xyz-test.com"
     http:
       paths:
-      - path: /xyz
+      - path: /
         pathType: Prefix
         backend:
           service:
             name:  xyz-service
             port:
-              number: 80
+              number: 8080
