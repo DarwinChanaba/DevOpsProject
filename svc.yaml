@@ -4,8 +4,8 @@ metadata:
   name: xyz-service
 spec:
   selector:
-    app: xyz-service 
-  type: NodePort 
+    app: xyz
+  type: ClusterIP 
   ports:
   - protocol: TCP
     port: 8080 
