@@ -4,7 +4,7 @@ pipeline {
         AWS_DEFAULT_REGION = 'us-east-1'
         AWS_ACCOUNT_ID = '031995739067'
         ECR_REPO_NAME = 'registry' 
-        IMAGE_TAG = "${GIT_COMMIT[0..7]}" 
+        IMAGE_TAG = 'latest' 
         REPO_URL = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}"
         DOCKER_IMAGE_NAME = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO_NAME}:${IMAGE_TAG}"
     }
@@ -34,5 +34,15 @@ pipeline {
                         }
                     }
                 }
+       
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh """kubectl apply -f deploy.yml && kubectl apply -f svc.yml"""
+                        }
+
+                   }
+                }
+
             }
 }

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deployment 
+  labels:
+    app: xyz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: xyz
+  template:
+    metadata:
+      labels:
+        app: xyz
+    spec:
+      containers:
+      - name: xyz 
+        image: 031995739067.dkr.ecr.us-east-1.amazonaws.com/registry:latest 
+        ports:
+        - containerPort: 8080 
